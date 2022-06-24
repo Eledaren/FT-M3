@@ -20,15 +20,11 @@ var stanzas = fs.readdirSync(dirpath)
 	return fs.readFileSync(path.join(dirpath, filename)).toString();
 });
 
-function resetCalls(spy) {
-	spy.__spy.calls = [];
-}
-
 describe('exercise two (involving poem two)', function () {
 
 	beforeEach(function () {
-		resetCalls(blue);
-		resetCalls(magenta);
+		blue.reset();
+		magenta.reset();
 	});
 
 	var blueCalls, redCalls;
@@ -61,7 +57,7 @@ describe('exercise two (involving poem two)', function () {
 
 	describe('problemA', function () {
 
-		xit('ignoring errors, logs the first and second stanza in any order, and a done message when both are complete', function (done) {
+		it('ignoring errors, logs the first and second stanza in any order, and a done message when both are complete', function (done) {
 			exercise.problemA();
 			setTimeout(function () {
 				expect(blue).to.have.been.called.with(stanzas[0]);
@@ -78,7 +74,7 @@ describe('exercise two (involving poem two)', function () {
 
 	describe('problemB', function () {
 
-		xit('ignoring errors, logs all stanzas in any order, and a done message when all are complete', function (done) {
+		it('ignoring errors, logs all stanzas in any order, and a done message when all are complete', function (done) {
 			exercise.problemB();
 			setTimeout(function () {
 				stanzas.forEach(function (stanza) {
@@ -96,7 +92,7 @@ describe('exercise two (involving poem two)', function () {
 
 	describe('problemC', function () {
 
-		xit('ignoring errors, logs all stanzas in the correct order, and a done message when all are complete', function (done) {
+		it('ignoring errors, logs all stanzas in the correct order, and a done message when all are complete', function (done) {
 			exercise.problemC();
 			setTimeout(function () {
 				stanzas.forEach(function (stanza, index) {
@@ -115,7 +111,7 @@ describe('exercise two (involving poem two)', function () {
 
 	describe('problemD', function () {
 
-		xit('logs all stanzas in the correct order; if an error occurs does not read the next file and instead logs the error; always logs done at the end', function (done) {
+		it('logs all stanzas in the correct order; if an error occurs does not read the next file and instead logs the error; always logs done at the end', function (done) {
 			exercise.problemD();
 			setTimeout(function () {
 				blueCalls.forEach(function (callArgs, index) {
